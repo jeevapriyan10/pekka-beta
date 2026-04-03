@@ -101,3 +101,13 @@ export function getGreeting(): string {
 export function getDayOfWeek(): string {
   return new Date().toLocaleDateString('en-US', { weekday: 'long' });
 }
+
+export function isWithinDays(dateStr: string, days: number): boolean {
+  try {
+    const date = new Date(dateStr);
+    const diff = (new Date().getTime() - date.getTime()) / (1000 * 3600 * 24);
+    return diff <= days && diff >= 0;
+  } catch {
+    return false;
+  }
+}
