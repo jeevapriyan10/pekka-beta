@@ -25,7 +25,10 @@
         "backgroundColor": "#06060f"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -44,6 +47,11 @@
           "motionPermission": "Allow PEKKA to access motion data for step tracking."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f07440b3-e48d-4547-8f65-9d304e1984cc"
+      }
+    }
   }
 }
