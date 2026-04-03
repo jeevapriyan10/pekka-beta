@@ -132,11 +132,11 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   const generateInsight = (
-    prof: UserProfile, 
-    todayCals: number, 
-    todayPro: number, 
-    todayWater: number, 
-    recentW: Workout[], 
+    prof: UserProfile,
+    todayCals: number,
+    todayPro: number,
+    todayWater: number,
+    recentW: Workout[],
     strks: (Streak | null)[]
   ) => {
     const insights = [];
@@ -145,24 +145,24 @@ export default function HomeScreen({ navigation }: any) {
     if (todayPro < prof.protein_goal * 0.5 && new Date().getHours() > 14) {
       insights.push(`You're at ${Math.round(todayPro)}g protein — aim for ${Math.round(prof.protein_goal - todayPro)}g more before end of day.`);
     }
-    
+
     if (todayWater < prof.water_goal_ml * 0.4 && new Date().getHours() > 12) {
-      insights.push(`Only ${(todayWater/1000).toFixed(1)}L water logged. Hydration affects strength by up to 15% — drink up!`);
+      insights.push(`Only ${(todayWater / 1000).toFixed(1)}L water logged. Hydration affects strength by up to 15% — drink up!`);
     }
-    
+
     if (workoutStreak && workoutStreak.current_streak >= 3) {
       insights.push(`🔥 ${workoutStreak.current_streak}-day workout streak! Consistency is the #1 predictor of progress. Don't break it.`);
     }
-    
+
     const last3DaysWorkouts = recentW.filter(w => isWithinDays(w.date, 3));
     if (last3DaysWorkouts.length >= 3) {
       insights.push(`3 workouts in 3 days — excellent! Consider a light recovery day tomorrow. Muscles grow during rest.`);
     }
-    
+
     if (prof.goal === 'Build Muscle' && todayCals < prof.calorie_goal * 0.8 && new Date().getHours() > 20) {
       insights.push(`You're ${Math.round(prof.calorie_goal - todayCals)} kcal under your muscle target. Don't undereat — you need fuel to grow.`);
     }
-    
+
     if (insights.length === 0) {
       const motivations = [
         "Every rep, every meal, every logged drop of water builds the version of you that you're working toward.",
@@ -172,7 +172,7 @@ export default function HomeScreen({ navigation }: any) {
       ];
       insights.push(motivations[new Date().getDay() % motivations.length]);
     }
-    
+
     return insights[0];
   };
 
@@ -285,7 +285,7 @@ export default function HomeScreen({ navigation }: any) {
                 {Math.round((nutrition.calories / (profile?.calorie_goal || 2000)) * 100)}%
               </Text>
             </View>
-            
+
             <View style={styles.ringWrapper}>
               <CircularProgress
                 size={80}
@@ -337,9 +337,9 @@ export default function HomeScreen({ navigation }: any) {
         <PekkaCard style={styles.macrosCard}>
           <View style={styles.sectionHeaderLine}>
             <Text style={styles.sectionTitle}>Today's Macros</Text>
-            <Text style={styles.sectionDate}>{new Date().toLocaleDateString('en-US', {month: 'short', day: 'numeric'})}</Text>
+            <Text style={styles.sectionDate}>{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</Text>
           </View>
-          
+
           {noMeals ? (
             <View style={styles.noMealsContainer}>
               <Text style={styles.noMealsText}>No meals logged yet</Text>
@@ -385,14 +385,14 @@ export default function HomeScreen({ navigation }: any) {
             </View>
           )}
         </PekkaCard>
-
-        {/* SECTION 4 - Weekly Calorie Chart */}
+        {/* 
+        {/* SECTION 4 - Weekly Calorie Chart 
         <PekkaCard style={styles.chartCard}>
           <Text style={styles.sectionTitle}>This Week</Text>
           <View style={styles.chartContainer}>
             {last7DaysCalories.length === 7 && (
               <Svg width="100%" height="110">
-                {/* Goal Line */}
+                {/* Goal Line 
                 <Line
                   x1="0"
                   y1={100 - ((profile?.calorie_goal || 2000) / maxWeeklyCals) * 80}
@@ -421,11 +421,11 @@ export default function HomeScreen({ navigation }: any) {
 
                   return (
                     <React.Fragment key={i}>
-                      {/* Bar bg */}
+                      {/* Bar bg 
                       <Rect x={xPos} y={20} width={16} height={80} fill={Colors.bg5} rx={4} />
-                      {/* Bar fill */}
+                      {/* Bar fill 
                       {cals > 0 && <Rect x={xPos} y={barY} width={16} height={barHeight} fill={fillCol} rx={4} />}
-                      {/* Label */}
+                      {/* Label 
                       <SvgText
                         x={xPos + 8}
                         y={115}
@@ -435,7 +435,7 @@ export default function HomeScreen({ navigation }: any) {
                       >
                         {dayStr}
                       </SvgText>
-                      {/* Cal num */}
+                      {/* Cal num 
                       {cals > 0 && (
                         <SvgText
                           x={xPos + 8}
@@ -454,7 +454,7 @@ export default function HomeScreen({ navigation }: any) {
             )}
           </View>
         </PekkaCard>
-
+*/}
         {/* SECTION 5 - Today's Workout Card */}
         <View style={styles.workoutSection}>
           <Text style={styles.sectionTitle}>TODAY'S WORKOUT</Text>
@@ -478,7 +478,7 @@ export default function HomeScreen({ navigation }: any) {
             </View>
           ) : (
             <PekkaCard style={styles.noworkoutCard}>
-              <Ionicons name="barbell" size={32} color={Colors.textDim} style={{marginBottom: 8}} />
+              <Ionicons name="barbell" size={32} color={Colors.textDim} style={{ marginBottom: 8 }} />
               <Text style={styles.noWorkoutText}>No workout logged today</Text>
               <TouchableOpacity style={styles.startWorkoutBtn} onPress={() => { navigation.navigate('Train'); }}>
                 <Text style={styles.startWorkoutText}>Start Workout →</Text>
@@ -566,7 +566,7 @@ export default function HomeScreen({ navigation }: any) {
             <TouchableWithoutFeedback>
               <Animated.View style={[styles.modalSheet, { transform: [{ translateY: slideAnim }] }]}>
                 <View style={styles.modalHandle} />
-                
+
                 {activeModalType === 'menu' && (
                   <View style={styles.menuGrid}>
                     <TouchableOpacity style={styles.menuItem} onPress={() => { closeModal(); setTimeout(() => navigation.navigate('Fuel'), 300); }}>
@@ -575,14 +575,14 @@ export default function HomeScreen({ navigation }: any) {
                       </View>
                       <Text style={styles.menuItemText}>Log Food</Text>
                     </TouchableOpacity>
-                    
+
                     <TouchableOpacity style={styles.menuItem} onPress={() => openModal('water')}>
                       <View style={[styles.menuIconBox, { backgroundColor: Colors.purpleAlpha }]}>
                         <Ionicons name="water" size={24} color={Colors.purple} />
                       </View>
                       <Text style={styles.menuItemText}>Log Water</Text>
                     </TouchableOpacity>
-                    
+
                     <TouchableOpacity style={styles.menuItem} onPress={() => { closeModal(); setTimeout(() => navigation.navigate('Train'), 300); }}>
                       <View style={[styles.menuIconBox, { backgroundColor: Colors.blueAlpha }]}>
                         <Ionicons name="barbell" size={24} color={Colors.blue} />
@@ -670,7 +670,7 @@ const styles = StyleSheet.create({
     width: 36, height: 36, borderRadius: 18, backgroundColor: Colors.white,
     alignItems: 'center', justifyContent: 'center'
   },
-  
+
   ringsCard: { marginBottom: 16, padding: 12 },
   ringsGrid: {
     flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12,
@@ -679,14 +679,14 @@ const styles = StyleSheet.create({
   ringPctText: { fontSize: 10, color: Colors.textDim, marginTop: 4, fontWeight: '600' },
 
   sectionTitle: { fontSize: 16, fontWeight: '800', color: Colors.text, marginBottom: 12, marginTop: 4, letterSpacing: 0.5 },
-  
+
   macrosCard: { marginBottom: 16 },
   sectionHeaderLine: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 16 },
   sectionDate: { fontSize: 12, color: Colors.textMuted },
   noMealsContainer: { alignItems: 'center', paddingVertical: 20 },
   noMealsText: { fontSize: 14, color: Colors.textMuted, marginBottom: 8 },
   logMealLink: { fontSize: 14, color: Colors.blue, fontWeight: '600' },
-  
+
   macroBarsContainer: { gap: 12 },
   macroBarRow: { flexDirection: 'row', alignItems: 'center' },
   macroLabelBox: { width: 70, flexDirection: 'row', alignItems: 'center' },
@@ -781,7 +781,7 @@ const styles = StyleSheet.create({
   menuItem: { width: '46%', alignItems: 'center', backgroundColor: Colors.bg4, padding: 16, borderRadius: 16 },
   menuIconBox: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
   menuItemText: { fontSize: 14, fontWeight: '600', color: Colors.text },
-  
+
   modalTitle: { fontSize: 18, fontWeight: '800', color: Colors.text, marginBottom: 20, textAlign: 'center' },
   waterForm: { paddingBottom: 20 },
   waterAmounts: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, justifyContent: 'center' },

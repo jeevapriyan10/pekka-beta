@@ -100,7 +100,7 @@ export default function CardioScreen() {
   const showDistance = !['HIIT', 'Jump Rope'].includes(type);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
       <Text style={styles.title}>LOG CARDIO</Text>
       
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.typeScroll} contentContainerStyle={styles.typeContent}>
@@ -164,7 +164,7 @@ export default function CardioScreen() {
       )}
       
       <View style={{ height: 40 }} />
-    </View>
+    </ScrollView>
   );
 }
 

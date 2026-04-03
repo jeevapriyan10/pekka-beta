@@ -256,13 +256,14 @@ export default function ProfileScreen({ navigation }: any) {
         />
 
         {/* Reset Data */}
-        <PekkaButton
+        {/*<PekkaButton
           title="RESET ALL DATA"
           variant="danger"
           onPress={handleResetData}
           style={styles.resetBtn}
-        />
+        />*/}
       </ScrollView>
+
 
       {/* Edit Modal */}
       <Modal visible={editModalVisible} animationType="slide" transparent>
