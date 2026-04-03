@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "PEKKA-BETA",
+    "slug": "Pekka-Beta",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#06060f"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "PEKKA needs access to your photo library to set a profile picture."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#06060f"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow PEKKA to access your photos for profile picture."
+        }
+      ],
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "Allow PEKKA to access motion data for step tracking."
+        }
+      ]
+    ]
+  }
+}
