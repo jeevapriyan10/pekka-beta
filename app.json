@@ -19,6 +19,7 @@
       }
     },
     "android": {
+      "package": "com.pekka.beta",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#06060f"
